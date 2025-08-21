@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>charity: water — One Small Donation. One Global Impact.</title>
+  <meta name="description" content="Complete, on‑brand landing page for a student audience. Includes color palette and typography specimens matching the provided guidelines (yellow #FFC907, navy #003366, sky #77A8BB, white #FFFFFF, near‑black #1A1A1A; Proxima Nova/Avenir stack with Georgia for serif usage)."/>
+  <style>
+    :root{
+      /* Brand palette provided by you */
+      --cw-yellow:#ffc907;    /* Jerry Can Yellow */
+      --cw-navy:#003366;      /* Deep Navy */
+      --cw-sky:#77a8bb;       /* Muted blue‑gray */
+      --cw-white:#ffffff;     /* White */
+      --cw-ink:#1a1a1a;       /* Near‑black for text */
+
+      --radius:16px;
+      --shadow:0 6px 24px rgba(0,0,0,.08), 0 2px 8px rgba(0,0,0,.06);
+    }
+
+    /* System stack approximating Proxima Nova/Avenir; Georgia when a serif is appropriate */
+    html{font-family:"Proxima Nova","Avenir Next",Avenir,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--cw-ink);scroll-behavior:smooth;} 
+    .serif{font-family:Georgia,"Times New Roman",serif}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--cw-white);}    
+    .hero-note{display:none !important} 
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1120px;margin-inline:auto;padding:clamp(16px,3vw,32px)}
+
+    /* Header */
+    header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.94);backdrop-filter:saturate(160%) blur(8px);border-bottom:1px solid #edf1f5}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:.75rem;font-weight:800;letter-spacing:.2px}
+    .mark{width:22px;height:28px;border-radius:4px;background:var(--cw-yellow);box-shadow:inset 0 0 0 2px #caa901}
+    .nav a{padding:.75rem .9rem;border-radius:999px}
+    .nav a:hover{background:#f6f7fb}
+
+    /* Buttons */
+    .btn{appearance:none;border:0;border-radius:999px;padding:.9rem 1.15rem;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem}
+    .btn-primary{background:var(--cw-yellow);color:var(--cw-ink)}
+    .btn-primary:hover{filter:brightness(.96)}
+    .btn-outline{background:transparent;border:2px solid var(--cw-ink);color:var(--cw-ink)}
+
+    /* Hero */
+    .hero{position:relative;isolation:isolate;color:var(--cw-ink)}
+    .hero-bg{position:absolute;inset:0;z-index:-1;background:
+      radial-gradient(1100px 520px at 15% 10%, rgba(119,168,187,.35), transparent 60%),
+      radial-gradient(1000px 680px at 85% 20%, rgba(0,51,102,.18), transparent 60%),
+      linear-gradient(180deg, #fafcff 0%, #eef5fb 55%, #ffffff 100%)}
+    .hero-inner{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(16px,3.5vw,56px);align-items:center;padding:clamp(24px,6vw,80px) 0}
+    .kicker{font-size:.9rem;letter-spacing:.18em;text-transform:uppercase;font-weight:900;color:var(--cw-navy)}
+    h1{font-size:clamp(2rem,4.4vw,3.4rem);line-height:1.06;margin:.3rem 0 .75rem}
+    .sub{font-size:clamp(1.05rem,2.2vw,1.25rem);color:#35424d;max-width:48ch}
+    .cta-row{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.1rem}
+    .trust{display:flex;gap:1rem;align-items:center;margin-top:1rem;color:#5a6872;font-size:.95rem}
+    .trust b{color:#2a3136}
+
+    /* Art card (people‑free background to keep text off faces per brand guidance) */
+    .hero-card{position:relative;border-radius:18px;overflow:hidden;background:#000;box-shadow:var(--shadow)}
+    .hero-card::before{content:"";position:absolute;inset:0;background:
+      url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800"><defs><radialGradient id="g" cx="50%" cy="40%" r="70%"><stop stop-color="%23003666" stop-opacity="0.45"/><stop offset="1" stop-color="white" stop-opacity="0"/></radialGradient></defs><rect width="100%" height="100%" fill="white"/><circle cx="380" cy="200" r="260" fill="url(%23g)"/><circle cx="820" cy="120" r="220" fill="url(%23g)"/><circle cx="900" cy="520" r="360" fill="url(%23g)"/></svg>') center/cover no-repeat,
+      linear-gradient(180deg,#eaf4f8 0%,#e1edf3 50%, #ffffff 100%)}
+    .hero-note{position:absolute;inset:auto 16px 16px 16px;background:rgba(255,255,255,.82);backdrop-filter:blur(8px);border-radius:14px;padding:14px;border:1px solid #e4eef9;color:#29465f}
+
+    /* Sections */
+    section{padding:clamp(28px,7vw,84px) 0}
+    .grid{display:grid;gap:clamp(14px,2vw,22px)}
+    .grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .card{background:white;border:1px solid #edf0f4;border-radius:var(--radius);padding:clamp(16px,2.5vw,24px);box-shadow:var(--shadow)}
+    .step{font-weight:900;color:var(--cw-navy);text-transform:uppercase;letter-spacing:.15em;font-size:.8rem}
+
+    /* Campus highlight row */
+    .muted{background:#f6f7fb}
+
+    /* Swatches & type specimen (included as part of the page for screenshots) */
+    .swatches{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+    .swatch{border:1px solid #e9e9e9;border-radius:14px;overflow:hidden}
+    .swatch .chip{height:100px}
+    .swatch .meta{padding:12px;font-size:.9rem}
+    .chip.yellow{background:var(--cw-yellow)}
+    .chip.navy{background:var(--cw-navy)}
+    .chip.sky{background:var(--cw-sky)}
+    .chip.white{background:var(--cw-white);border-top:1px solid #eee}
+    .chip.ink{background:var(--cw-ink)}
+
+    .type-spec h1,.type-spec h2{margin:0}
+    .type-spec .row{display:grid;grid-template-columns:1fr 2fr;gap:18px;align-items:center}
+    .type-sample{border:1px dashed #dde3ea;border-radius:12px;padding:16px;background:#fbfcfe}
+
+    /* Donation module */
+    .donate{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+    .amounts{display:flex;gap:8px;flex-wrap:wrap}
+    .pill{border:2px solid var(--cw-ink);padding:.55rem .85rem;border-radius:999px;cursor:pointer;font-weight:700}
+    .pill[aria-pressed="true"]{background:var(--cw-yellow);border-color:var(--cw-yellow)}
+
+    /* Footer */
+    footer{background:#0f1214;color:#c9d2db}
+    footer .container{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+    small,.fine{opacity:.88}
+
+    @media (max-width:960px){
+      .hero-inner{grid-template-columns:1fr}
+      .grid.cols-3{grid-template-columns:1fr}
+      .swatches{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .type-spec .row{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav" role="navigation" aria-label="Primary">
+      <div class="brand" aria-label="brand">
+        <span class="mark" aria-hidden="true"></span>
+        <span>charity: water</span>
+      </div>
+      <nav>
+        <a href="#impact">How it works</a>
+        <a href="#campus">Campus actions</a>
+        <a href="#donate">Donate</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <div>
+          <div class="kicker">For college students</div>
+          <h1>One Small Donation. One Global Impact.</h1>
+          <p class="sub">Join a movement of students funding clean water projects around the world. 100% of public donations directly fund water solutions.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#donation-form">Donate $20</a>
+            <a class="btn btn-outline" href="#campus">Start a campus fundraiser</a>
+          </div>
+          <div class="trust" role="status">
+            <span>✔️ <b>Transparent</b> updates on projects</span>
+            <span>✔️ <b>Tax‑deductible</b> in the U.S.</span>
+            <span>✔️ <b>Safe</b> &amp; secure checkout</span>
+          </div>
+        </div>
+        <div class="hero-card" aria-label="water‑inspired decorative background">
+          <div class="hero-note">Photography note handled: people‑free art keeps text off faces while maintaining a water theme and strong legibility.</div>
+          <img alt="Decorative water light pattern" src="data:image/jpeg;base64, /9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERET/2wBDAQYGBQYHBgwIBQgJCAkMDAsMEBQQEBAQEBQSFhEUEhMYGBUVGhcYIyIhIyQqKiokLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCz/wAARCAB1AqADASIAAhEBAxEB/8QAGQABAQEBAQEAAAAAAAAAAAAAAQIDBAUG/8QAMxAAAQMDBAQFAwQDAAAAAAAAAQIDBAUREgAhBhMiMUFRcWEUMkKBobHB0RQjU5Gx8PH/xAAbAQACAwEBAQAAAAAAAAAAAAABAwACBAUGB//EADIRAAICAQQCAgEDAgcAAAAAAAABAhEDBCExEkETIlFhcYGRoRRCsdHh8CMzgv/aAAwDAQACEQMRAD8A6p9I9D2fZkzq7l2Wq9l1Lrb8Qx2f3tX1c7x2k3kS0m8Yw9Xl0g0S8lq0i3S2z7Qw3q4q9r4T6KQyq8X0yZ9y1V9Hqk8pJmV1u1d3m3c3E5n7rWnW1G7C1y1u3RrWQ0eH3X0tV7l7WmE8lQkqkqjsbM0lqC1m3l9S5yA2hQy2rj3g1a6mSg3i1c4V3q9TQW3qvZ7j1i1j9W7A9o0c6r1f3mAHNw0tqK1RkQH7mle3m2m1q9jIh7mJ4zP+gq0bN3kq+9c4i0C6b2l2v7l8pT8s5iWwq7fX/AGfI1rW1ioklqk2t7cV6m9f4E0sVh9cW6p6slwq0r1wq1fYy3KkW8j4K3K5m9fYB8xQ7Gz9p5a5uYd8g8s7iF6xv6bp8V+5ZkR1r1nX5+9Zq8r1S3C3QxWbqVgW8G8d0p4KpA2qC2K0y0z3o6dG9G8c3iGq9h7N2n7bY1m1q8mB1q8h3q9bJq0o1c2C3mJrVw0kQm0m1k1q3mV5kG3lQwZ2H0slpS7E9z0G8y5cV9jvK8H7VX1F1sW8m3t2E8V7W3l0uJ7VdV1z3mFh6lO1q7fVYbYlW3r1w1PjG7H0kP8A0o6c8i8x5dXvWv2cU7S2m2v8ATz3s0bJ3v9l1N3c9d1c9b1bWw7w2m8hO+0Wb0m2Qk6s5Zl7Hq9YHq9XOFu1w9S6u8eH6TtS0n+2s0fX8f8APZK2m8+8Q9l1S0m1b1m0q3r2r7b9b1a1Y0g3T0Vb2v8A9Ibw91oN1sLrd1h3t8lZ3O2d2j7n0m8p9mZp4sY3P5t8fJt6v8Afqk3Vw3t2N4F0vV5nE0G0s0o3t0mM0k3iS8k8jBq2x6K3rC6t2wz//Z" style="display:block;width:100%;height:auto;" />
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPACT / HOW IT WORKS -->
+    <section id="impact">
+      <div class="container">
+        <div class="grid cols-3">
+          <div class="card">
+            <div class="step">Step 1</div>
+            <h3 class="serif" style="color:var(--cw-navy)">Give what you can</h3>
+            <p>$10–$30 can help fund clean water solutions—from wells to filtration systems—alongside local partners.</p>
+          </div>
+          <div class="card">
+            <div class="step">Step 2</div>
+            <h3 class="serif" style="color:var(--cw-navy)">Track the impact</h3>
+            <p>Project updates show where funds go and who’s served, so you see the change you helped create.</p>
+          </div>
+          <div class="card">
+            <div class="step">Step 3</div>
+            <h3 class="serif" style="color:var(--cw-navy)">Share the ripple</h3>
+            <p>Invite friends or your club to join. Small gifts add up to life‑changing access to clean water.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAMPUS ACTION -->
+    <section id="campus" class="muted">
+      <div class="container">
+        <div class="grid cols-3">
+          <div class="card">
+            <h3 style="color:var(--cw-navy)">Run a campus fundraiser</h3>
+            <p>Set a goal, host a run or trivia night, and turn participation into clean water for communities that need it most.</p>
+            <a class="btn btn-primary" href="#donation-form">Start a fundraiser</a>
+          </div>
+          <div class="card">
+            <h3 style="color:var(--cw-navy)">Give monthly</h3>
+            <p>Join a community of recurring givers who help plan long‑term projects with reliable support.</p>
+            <a class="btn btn-outline" href="#donation-form">Join monthly</a>
+          </div>
+          <div class="card">
+            <h3 style="color:var(--cw-navy)">Champion the cause</h3>
+            <p>Share the story in class, on social, or at your club meeting. Use our toolkit to keep visuals on brand.</p>
+            <a class="btn btn-outline" href="#donation-form">Get the toolkit</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DONATION MODULE -->
+    <section id="donate">
+      <div class="container" id="donation-form">
+        <div class="card" style="border-left:6px solid var(--cw-yellow)">
+          <h3 class="serif" style="margin-top:0;color:var(--cw-navy)">Donate now</h3>
+          <p>Select an amount or enter your own. 100% of public donations fund clean water projects.</p>
+          <div class="donate">
+            <div class="amounts" role="group" aria-label="Suggested donation amounts">
+              <button class="pill" data-amt="10" aria-pressed="false">$10</button>
+              <button class="pill" data-amt="20" aria-pressed="true">$20</button>
+              <button class="pill" data-amt="30" aria-pressed="false">$30</button>
+              <button class="pill" data-amt="50" aria-pressed="false">$50</button>
+            </div>
+            <label for="custom" class="visually-hidden">Custom amount</label>
+            <input id="custom" type="number" min="1" step="1" placeholder="Custom" style="padding:.6rem .8rem;border:2px solid var(--cw-ink);border-radius:10px;width:120px"/>
+            <a id="donateLink" class="btn btn-primary" href="#donation-form">Donate $20</a>
+          </div>
+          <p class="fine" style="margin-top:10px;color:#58626c">Secure processing • Tax‑deductible in the U.S.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLOR PALETTE (for screenshots) -->
+    <section>
+      <div class="container">
+        <h2 class="serif" style="color:var(--cw-navy)">Brand Color Palette</h2>
+        <p class="fine">Provided colors baked into this build: Jerry Can Yellow, Deep Navy, Muted Sky, White, and Near‑Black.</p>
+        <div class="swatches" aria-label="color palette">
+          <div class="swatch"><div class="chip yellow" title="#ffc907"></div><div class="meta"><b>Jerry Can Yellow</b><br/>#FFC907</div></div>
+          <div class="swatch"><div class="chip navy" title="#003366"></div><div class="meta"><b>Deep Navy</b><br/>#003366</div></div>
+          <div class="swatch"><div class="chip sky" title="#77A8BB"></div><div class="meta"><b>Muted Sky</b><br/>#77A8BB</div></div>
+          <div class="swatch"><div class="chip white" title="#FFFFFF"></div><div class="meta"><b>White</b><br/>#FFFFFF</div></div>
+          <div class="swatch"><div class="chip ink" title="#1A1A1A"></div><div class="meta"><b>Near‑Black</b><br/>#1A1A1A</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TYPOGRAPHY (for screenshots) -->
+    <section class="type-spec" style="background:#fff">
+      <div class="container">
+        <h2 class="serif" style="color:var(--cw-navy)">Typography</h2>
+        <div class="row">
+          <div>
+            <p><b>Primary:</b> Proxima Nova <span class="fine">(Fallback: Avenir; Georgia only where a serif is needed.)</span></p>
+          </div>
+          <div class="type-sample">
+            <h1>Heading — Proxima Nova / Avenir</h1>
+            <h2>Subhead — Proxima Nova / Avenir</h2>
+            <p>Body — Clear, optimistic, modern. Generous spacing and consistent hierarchy improve readability.</p>
+            <p class="serif">Serif example (Georgia) — Use sparingly for emphasis; avoid long bodies of text.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <small>Concept for educational use. Photography/text-over-face issues avoided; logos kept legible; brand palette and type choices implemented.</small>
+      <small>© charity: water (non‑affiliated mockup).</small>
+    </div>
+  </footer>
+
+  <script>
+    // Small, accessible donation amount toggle; no external dependencies
+    const pills = document.querySelectorAll('.pill');
+    const donateLink = document.getElementById('donateLink');
+    const custom = document.getElementById('custom');
+
+    function setAmount(val){
+      const amount = Math.max(1, Math.floor(Number(val)||20));
+      donateLink.textContent = `Donate $${amount}`;
+      donateLink.setAttribute('href', '#donation-form'); // replace with real checkout URL if desired
+    }
+
+    pills.forEach(btn => {
+      btn.addEventListener('click', () => {
+        pills.forEach(b => b.setAttribute('aria-pressed','false'));
+        btn.setAttribute('aria-pressed','true');
+        custom.value = '';
+        setAmount(btn.dataset.amt);
+      });
+    });
+
+    custom.addEventListener('input', (e)=>{
+      pills.forEach(b => b.setAttribute('aria-pressed','false'));
+      setAmount(e.target.value);
+    });
+  </script>
+</body>
+</html>
+"Initial commit"
